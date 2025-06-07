@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gerador de Imagem - YourWare</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    img { max-width: 100%; margin-top: 20px; }
+    input, button { padding: 10px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Gerar Imagem com GPT (DALL·E)</h1>
+  <input type="text" id="prompt" placeholder="Descreva a imagem..." size="50" />
+  <button onclick="gerarImagem()">Gerar</button>
+  <div id="resultado"></div>
+
+  <script>
+    async function gerarImagem() {
+      const prompt = document.getElementById('prompt').value;
+      const resultadoDiv = document.getElementById('resultado');
+      resultadoDiv.innerHTML = "Gerando imagem...";
+
+      const response = await fetch('/generate-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt })
+      });
+
+      const data = await response.json();
+
+      if (data.imageUrl) {
+        resultadoDiv.innerHTML = `<img src="${data.imageUrl}" alt="Imagem gerada" />`;
+      } else {
+        resultadoDiv.innerHTML = "Erro ao gerar imagem.";
+      }
+    }
+  </script>
+</body>
+</html>
