@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 const PORT = 3000;
 
-const OPENAI_API_KEY = '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';
+const OPENAI_API_KEY = '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';
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
