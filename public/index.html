@@ -22,7 +22,7 @@
       const resultadoDiv = document.getElementById('resultado');
       resultadoDiv.innerHTML = "Gerando imagem...";
 
-      const response = await fetch('/generate-image', {
+      const response = await fetch('/api/generate-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt })
